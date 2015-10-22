@@ -15,7 +15,7 @@ router.get('/callback', passport.authenticate('github', {
 
 passport.use(new GitHubStrategy({
 	clientID: '1fa23a95086808ecdf10',
-	clientSecret: 'c392156959b0fb157fd36e91e73f74738ddc2254',
+	clientSecret: require('./config.js').githubKey,
 	callbackURL: 'http://127.0.0.1:8080/auth/github/callback'
 }, function (token, refreshToken, profile, done) { 
 	User.findOne({'github.id': profile.id }, function (err, user) {
